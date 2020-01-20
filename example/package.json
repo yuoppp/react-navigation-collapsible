@@ -9,13 +9,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.6",
     "react": "16.9.0",
     "react-native": "0.61.4",
     "react-native-gesture-handler": "^1.5.1",
     "react-native-reanimated": "^1.4.0",
+    "react-native-safe-area-context": "^0.6.2",
     "react-navigation": "^4.0.10",
     "react-navigation-collapsible": "^3.0.3",
-    "react-navigation-stack": "^1.10.3",
+    "react-navigation-stack": "^2.0.1",
     "react-navigation-tabs": "^2.6.0"
   },
   "devDependencies": {
