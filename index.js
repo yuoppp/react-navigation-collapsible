@@ -192,8 +192,15 @@ const collapsibleNavigationOptions = (configOptions, userOptions, navigation) =>
       transform: [{translateY: collapsibleTranslateY || 0}],
       overflow: 'hidden',
       opacity: Platform.select({ios: collapsibleTranslateOpacity || 1, android: global.Expo ? (collapsibleTranslateOpacity || 1) : 1, web: 1}),
-      height: headerHeight,
     },
+    headerBackground: () => (
+      <Animated.View style={{
+        opacity: Platform.select({ios: collapsibleTranslateOpacity || 1, android: global.Expo ? (collapsibleTranslateOpacity || 1) : 1, web: 1}),
+        transform: [{translateY: collapsibleTranslateY || 0}],
+        flex: 1,
+        backgroundColor: userOptions?.headerStyle?.backgroundColor || configOptions?.headerStyle?.backgroundColor
+      }}/>
+    ),
     headerTransparent: true, 
   };
 
