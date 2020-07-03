@@ -99,20 +99,42 @@ const createCollapsibleStack = (
         const translateY = Animated.multiply(progress, -headerHeight);
         const opacity = Animated.subtract(1, progress);
 
+        const containerPaddingTop =
+          collapsibleTarget === CollapsibleTarget.SubHeader
+            ? headerHeight
+            : getNavigationHeight(isLandscape, headerHeight);
+
+        const scrollIndicatorInsetTop =
+          collapsibleTarget === CollapsibleTarget.SubHeader
+            ? headerHeight
+            : getScrollIndicatorInsetTop(isLandscape, headerHeight);
+
+        let contentPaddingTopValue;
+        let scrollIndicatorInsetTopValue;
+
+        if (config.animatedInsets) {
+          contentPaddingTopValue = Animated.multiply(
+            progress,
+            -containerPaddingTop
+          );
+          scrollIndicatorInsetTopValue = Animated.multiply(
+            progress,
+            -scrollIndicatorInsetTop
+          );
+        } else {
+          contentPaddingTopValue = containerPaddingTop;
+          scrollIndicatorInsetTopValue = scrollIndicatorInsetTop;
+        }
+
         const collapsible: Collapsible = {
           onScroll,
           onScrollWithListener,
-          containerPaddingTop:
-            collapsibleTarget === CollapsibleTarget.SubHeader
-              ? headerHeight
-              : getNavigationHeight(isLandscape, headerHeight),
-          scrollIndicatorInsetTop:
-            collapsibleTarget === CollapsibleTarget.SubHeader
-              ? headerHeight
-              : getScrollIndicatorInsetTop(isLandscape, headerHeight),
+          containerPaddingTop: contentPaddingTopValue,
+          scrollIndicatorInsetTop: scrollIndicatorInsetTopValue,
           translateY,
           progress,
           opacity,
+          positionY,
         };
         if (
           route.params?.isCollapsibleDirty ||

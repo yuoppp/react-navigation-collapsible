@@ -17,6 +17,7 @@ export type Collapsible = {
   translateY: Animated.AnimatedInterpolation;
   progress: Animated.AnimatedInterpolation;
   opacity: Animated.AnimatedInterpolation;
+  positionY: Animated.AnimatedValue;
 };
 
 export type CollapsibleStackConfig = {
@@ -27,4 +28,5 @@ export type CollapsibleStackConfig = {
   ) => ReactNode;
   key?: string;
   elevation?: number;
+  animatedInsets?: boolean;
 };
